@@ -1,0 +1,14 @@
+/* FORMULARIO.VUE */
+.c-section {
+  &--home {
+    outline: none;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .c-section {
+    &--home {
+      outline: none;
+    }
+  }
+}

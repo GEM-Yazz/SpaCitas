@@ -1,0 +1,60 @@
+<template>
+  <header class="c-header w-100">
+    <div class="container position-relative">
+      <nav class="c-nav w-100">
+
+        <div class="c-nav__left d-flex justify-content-center align-items-center">
+          <figure class="c-brand c-brand--normal d-flex justify-content-center align-items-center
+           mt-2">
+            <router-link class="c-brand__link" to="/inicio">
+      <img class="c-brand__image" src="@/assets/images/CariciaLogoGray.png" alt="Caricia - Logo" />
+    </router-link>
+
+          </figure>
+        </div>
+
+        <div class="c-nav__right">
+          <ul class="c-menu menu ul-reset">
+          <router-link class="c-brand__link2" to="/inicio">
+            INICIO
+          </router-link>
+
+          <a class="c-brand__link2" href="#horario">
+            Horario de atención
+          </a>
+
+          <a class="c-brand__link21" href="#about">
+            PROMOCIONES
+          </a>
+
+            <li
+              v-for="item of general.data.primary_menu"
+              :key="item.id"
+              :class="[item.class, {'activate' : isAtiveMenuItem(item)}]">
+              <router-link :to="item.url" class="position-relative" replace>
+                {{ item.name }}
+              </router-link>
+            </li>
+          </ul>
+
+        </div>
+
+      </nav>
+    </div>
+  </header>
+</template>
+
+<script>
+import { mapState } from 'vuex';
+
+export default {
+  computed: {
+    ...mapState(['general']),
+  },
+  methods: {
+    isAtiveMenuItem(item) {
+      return item.slug.toLowerCase() === this.$route.name.toLowerCase();
+    },
+  },
+};
+</script>

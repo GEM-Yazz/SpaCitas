@@ -1,0 +1,214 @@
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.prom {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* .img-inicio {
+  filter: brightness(50%);
+} */
+
+.c-carousel {
+  position: relative;
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    background-color: none;
+    color: white;
+    padding: 10px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    height: 80px;
+  }
+
+  .swiper-button-prev {
+    left: 20px;
+  }
+
+  .swiper-button-next {
+    right: 20px;
+  }
+}
+
+.c-carousel-slide {
+  height: 600px;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  background-size: cover;
+
+  h2 {
+    color: white;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .c-button {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: rgba($black, 0.5);
+  }
+
+  &--inc1 {
+    background-image: url("../../assets/images/Caricia-1.jpg");
+  }
+
+  &--inc2 {
+    background-image: url("../../assets/images/Caricia-2.jpg");
+  }
+}
+
+.c-carousel-slide2 {
+  height: 300px;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+
+  &--ims1 {
+    background-image: url("../../assets/images/aparatologia.jpg");
+  }
+
+  &--ims2 {
+    background-image: url("../../assets/images/uñas.png");
+  }
+
+  &--ims3 {
+    background-image: url("../../assets/images/Facial.jpg");
+  }
+
+  &--ims4 {
+    background-image: url("../../assets/images/Lashes.png");
+  }
+}
+
+//=================================
+.c-carousel-slide31 {
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+
+  &--ims1 {
+    background-image: url("../../assets/images/carousel-1.jpg");
+  }
+
+  &--ims2 {
+    background-image: url("../../assets/images/carousel-2.jpg");
+  }
+
+  &--ims3 {
+    background-image: url("../../assets/images/carousel-3.jpg");
+  }
+
+  &--ims4 {
+    background-image: url("../../assets/images/carousel-4.jpg");
+  }
+
+  &--ims5 {
+    background-image: url("../../assets/images/carousel-5.jpg");
+  }
+
+  &--ims6 {
+    background-image: url("../../assets/images/carousel-6.jpg");
+  }
+
+  &--ims7 {
+    background-image: url("../../assets/images/carousel-7.jpg");
+  }
+
+  &--ims8 {
+    background-image: url("../../assets/images/carousel-8.jpg");
+  }
+
+  &--ims9 {
+    background-image: url("../../assets/images/carousel-9.jpg");
+  }
+
+  &--ims10 {
+    background-image: url("../../assets/images/carousel-10.jpg");
+  }
+}
+//=================================
+
+//=================================
+.c-carousel-slide3 {
+  height: 100px;
+  color: white;
+  text-align: center;
+  background-size: cover;
+
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: rgba($black, 0.5);
+  }
+}
+//=================================
+
+.section-header {
+  text-align: center;
+}
+
+@include media-breakpoint-up(lg) {
+  .c-carousel-slide {
+    height: 400px;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .c-carousel-slide {
+    height: 400px;
+  }
+}
+
+@include media-breakpoint-up(s) {
+  .c-carousel-slide {
+    height: 400px;
+  }
+}
+
+@include media-breakpoint-only(xs) {
+  .prom {
+    width: 300px;
+    justify-content: center;
+  }
+
+  .c-carousel-slide {
+    height: 300px;
+  }
+}

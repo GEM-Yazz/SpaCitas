@@ -1,0 +1,51 @@
+.c-servicio {
+  &__titulo {
+    font-family: $body-font-family;
+    color: #5a5a5a;
+    text-align: center;
+  }
+
+  &__pyt {
+    text-align: center;
+    font-size: 19px;
+  }
+}
+
+.c-servicio-imagen {
+  height: 200px;
+}
+
+.hr-serv {
+  width: 80%;
+  margin-left: 5%;
+}
+
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 15px;
+  z-index: 99999;
+  background: var(--color-primary);
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  transition: all 0.4s;
+}
+
+.scroll-top i {
+  font-size: 24px;
+  color: #fff;
+  line-height: 0;
+}
+
+.scroll-top:hover {
+  background: #ec2727;
+  color: #fff;
+}
+
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+}
