@@ -20,16 +20,16 @@ class ExampleController {
      }
      
      public function storeCitas($request){
-        $cita = new cita ();
-        
-        $cita->nombre = $request['nombre'];
-        $cita->apellidos = $request['apellidos'];
-        $cita->telefono = $request['telefono'];
-        $cita->servicio = $request['servicio'];
-        $cita->sucursal = $request['sucursal'];
-        $cita->email = $request['email'];
-        $cita->reserva = $request['reserva'];
-        $cita->hora = $request['hora'];
+        $cita = new Cita();
+
+        $cita->nombre       = $request['nombre'];
+        $cita->apellidos    = $request['apellidos'];
+        $cita->telefono     = $request['telefono'];
+        $cita->servicio     = $request['servicio'];
+        $cita->sucursal     = $request['sucursal'];
+        $cita->email        = $request['email'];
+        $cita->reserva      = $request['reserva'];
+        $cita->hora         = $request['hora'];
 
         $cita->save();
 
@@ -38,16 +38,32 @@ class ExampleController {
     }
 
     public function showHoursByDay($request){
-        $service = get_posts([
-           'name' =>  $request ['services'],
-           'post_type' => 'services'
+        $services = get_posts([
+            'name'       =>  $request ['services'],
+            'post_type'  => 'services'
         ]);
 
-        if(count($service)>0) {
-            $services    = $service [0];
-            $day         = $request['day'];
-  
-          return get_field($day, $services->ID);
+        if(count($services)>0) {
+            $service    = $services[0];
+            $day        = $request['day'];
+            $dayDate    = $request['day_date'];
+
+            $hours = get_field($day, $service->ID);
+            $hoursFinal = [];
+
+            foreach($hours as $hour) {
+                $cita = Cita::where([
+                    'servicio'  => $service->post_title,
+                    'hora'      => $hour['hora'],
+                    'reserva'   => $dayDate,
+                ])->first();
+
+                if (!$cita) {
+                    array_push($hoursFinal, $hour);
+                }
+            }
+
+            return $hoursFinal;
         } else { 
             return false; 
         }

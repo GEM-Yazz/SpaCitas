@@ -69,7 +69,7 @@
          <p class="row col-5"
           v-for="(item, indice) of hours"
           :key="`hora${indice}`" >
-          <button class="col-10"> {{ item.hora }}</button>
+          <button @click="saveHour(item.hora)" class="col-10"> {{ item.hora }}</button>
          </p>
      </ul>
     </p>
@@ -248,10 +248,10 @@ export default {
       form.append('servicio', this.serviceTitle);
       form.append('sucursal', this.sucursal);
       form.append('email', this.email);
-      form.append('reserva', this.fecha);
+      form.append('reserva', new Date(this.fecha).toISOString().slice(0, 10));
       form.append('hora', this.hora);
 
-      fetch('http://localhost/citas/wp-json/custom/v1/citas', {
+      fetch(`${process.env.VUE_APP_API}/citas`, {
         method: 'POST',
         body: form,
       })
@@ -275,7 +275,7 @@ export default {
     getHoursByDay() {
       const day = this.fecha.toLocaleDateString('en', { weekday: 'long' }).toLowerCase();
       const service = this.$route.query.servi;
-      fetch(`http://localhost/citas/wp-json/custom/v1/citas/hours?day=${day}&services=${service}`, {
+      fetch(`${process.env.VUE_APP_API}/citas/hours?day=${day}&services=${service}&day_date=${new Date(this.fecha).toISOString().slice(0, 10)}`, {
         method: 'GET',
       })
 
@@ -283,6 +283,9 @@ export default {
         .then((response) => {
           this.hours = response.data;
         });
+    },
+    saveHour(hora) {
+      this.hora = hora;
     },
 
     cargarServicio3() {
