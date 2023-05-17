@@ -6,6 +6,11 @@ use App\Models\Example;
 use App\Models\Cita;
 use Exception;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception as MailerException;
+
+require(__DIR__ . '/../../libs/email.php');
+
 class ExampleController {
     public function __construct() { }
 
@@ -17,9 +22,9 @@ class ExampleController {
         } else {
             throw new Exception('No examples found');
         }
-     }
-     
-     public function storeCitas($request){
+    }
+
+    public function storeCitas($request){
         $cita = new Cita();
 
         $cita->nombre       = $request['nombre'];
@@ -27,14 +32,18 @@ class ExampleController {
         $cita->telefono     = $request['telefono'];
         $cita->servicio     = $request['servicio'];
         $cita->sucursal     = $request['sucursal'];
-        $cita->email        = $request['email'];
+        $cita->email        = 'yazminbellohdez@gmail.com';
+        // $cita->email        = $request['email'];
         $cita->reserva      = $request['reserva'];
         $cita->hora         = $request['hora'];
 
         $cita->save();
 
-        return $cita;
+        if ($cita) {
+            $this->__sendNotify($cita);
+        }
 
+        return $cita;
     }
 
     public function showHoursByDay($request){
@@ -69,4 +78,35 @@ class ExampleController {
         }
     }
 
+    private function __sendNotify($cita) {
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+
+            $mail->CharSet      = 'UTF-8';
+            $mail->SMTPDebug    = 0;
+            $mail->Host         = $_ENV['MAIL_HOST'];
+            $mail->SMTPAuth     = true;
+            $mail->Username     = $_ENV['MAIL_USER'];
+            $mail->Password     = $_ENV['MAIL_PASSWORD'];
+            $mail->SMTPSecure   = $_ENV['MAIL_ENCRYPTATION'];
+            $mail->Port         = 465;
+
+            $mail->setFrom($_ENV['MAIL_SENDER'], "SPA");
+            $mail->addAddress($cita->email);
+
+            $body = __getEmailTemplate('cita', $cita);
+
+            $mail->isHTML(true); 
+            $mail->Subject = '¡🥳 Gracias por tu reserva 🎉!';
+            $mail->MsgHTML($body);
+
+            $mail->send();
+
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
 }
