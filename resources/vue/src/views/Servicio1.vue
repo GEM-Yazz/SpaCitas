@@ -18,7 +18,7 @@
         <p> Hasta 2 zonas</p>
         <hr class="hr-serv" size="4">
         <p class="c-servicio__pyt">1hr – $750</p>
-        <router-link type="button" class="c-button--servicios"
+       <router-link type="button" class="c-button--servicios"
           to="/?servi=masajereductivo">Reservar ahora</router-link>
     </div>
 

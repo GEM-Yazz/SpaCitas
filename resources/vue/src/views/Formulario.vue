@@ -30,7 +30,7 @@
           </li><!-- End tab nav item -->
         </ul>   <!-- =======END Menu Section ======= -->
 
-        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+        <div class="tab-content">
 
          <!-- Inicio Paso1 Menu Content -->
          <div class="tab-pane fade active show" id="paso1">
@@ -38,38 +38,39 @@
               <h3 class="mt-4 mb-4">Fecha y sucursal</h3>
               <h3></h3>
             </div>
-            <div class="row">
+            <div class="calendarsuc row">
 
               <form>
                 <div class="custom-select">
                  Sucursal: <br>
              <select style="width: 40%; padding: 5px 20px; margin: 6px 0;"
                v-model="sucursal">
-              <option disabled>Elija una sucursal</option>
+              <option disabled> Elija una sucursal </option>
               <option value="PlazaLasPergolas">
                  Plaza Las Pérgolas </option>
               <option value="SucursalCentro">
                  Sucursal Centro </option>
               </select>
-              <hr>
+              <hr style="margin-right: 90px;">
               <br>
           </div><!-- Menu Item -->
             </form>
 
 <!--===CALENDARIO Inicio===-->
-    <div class="prom">
-      Selecciona una fecha *
-
+    <div class="">
+      <div class="tiselcf"> Selecciona una fecha *</div>
+    <p></p>
    <p class="row mb-4">
     <vc-date-picker :min-date='new Date()' :disabled-dates='{ weekdays: [2] }'
-     color="pink" class="col-2" trim-weeks v-model="fecha"
+     color="pink" class="calndar col-2" trim-weeks v-model="fecha"
       @dayclick="$event => getHoursByDay()"/>
 
       <ul class="row col-4">
-         <p class="row col-5"
+         <p class="row col-6"
           v-for="(item, indice) of hours"
           :key="`hora${indice}`" >
-          <button @click="saveHour(item.hora)" class="col-10"> {{ item.hora }}</button>
+          <button @click="saveHour(item.hora)" data-aos="fade-up"
+           class="col-10"> {{ item.hora }}</button>
          </p>
      </ul>
     </p>
@@ -77,9 +78,9 @@
     ('es-ES', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}} </p>
     </div><!-- Menu Item -->
 <!--===CALENDARIO FIN===-->
-
             </div>
           </div><!-- End Paso1 Menu Content -->
+
           <div class="tab-pane fade" id="paso2">
             <div class="tab-header text-center">
               <h3 class="mt-4 mb-4">Tu información</h3>
@@ -96,6 +97,7 @@
               </div><!-- Menu Item -->
               <div style="font-weight: bold;" class="col-lg-2 menu-item ">
                 Hora:
+                <div style="font-weight: normal;" > {{ hora }}</div>
               </div><!-- Menu Item -->
               <div style="font-weight: bold;" class="col-lg-2 menu-item">
                Sucursal:
@@ -248,7 +250,7 @@ export default {
       form.append('servicio', this.serviceTitle);
       form.append('sucursal', this.sucursal);
       form.append('email', this.email);
-      form.append('reserva', new Date(this.fecha).toISOString().slice(0, 10));
+      form.append('reserva', this.fecha.toLocaleDateString('sv'));
       form.append('hora', this.hora);
 
       fetch(`${process.env.VUE_APP_API}/citas`, {
@@ -274,8 +276,9 @@ export default {
 
     getHoursByDay() {
       const day = this.fecha.toLocaleDateString('en', { weekday: 'long' }).toLowerCase();
+      console.log(this.fecha.toLocaleDateString('sv'));
       const service = this.$route.query.servi;
-      fetch(`${process.env.VUE_APP_API}/citas/hours?day=${day}&services=${service}&day_date=${new Date(this.fecha).toISOString().slice(0, 10)}`, {
+      fetch(`${process.env.VUE_APP_API}/citas/hours?day=${day}&services=${service}&day_date=${this.fecha.toLocaleDateString('sv')}`, {
         method: 'GET',
       })
 

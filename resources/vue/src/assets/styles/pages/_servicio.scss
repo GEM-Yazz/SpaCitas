@@ -49,3 +49,23 @@
   visibility: visible;
   opacity: 1;
 }
+
+.calendarsuc {
+  margin-left: 90px;
+}
+
+.calndar {
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+@include media-breakpoint-only(xs) {
+  .calendarsuc {
+    margin-left: 1px;
+  }
+
+  .calndar {
+    margin-right: 1px;
+    margin-left: 1px;
+  }
+}
