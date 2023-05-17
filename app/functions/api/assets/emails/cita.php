@@ -6,7 +6,7 @@
             <td width="600" align="center">
             <div style="background: #6600EC; color: white; width: 100%; max-width: 640px;">
                 <header style="background: white; padding: 1rem;">
-                    <img src="<?= get_template_directory_uri() ?>/static/public/logo.png" style="width: 100px;">
+                    <!-- <img src="<?= get_template_directory_uri() ?>/static/public/logo.png" style="width: 100px;"> -->
                 </header>
 
                 <div style="padding: 1rem;">
@@ -15,14 +15,8 @@
                     <table style="width: 100%; padding-left: 1.5rem">          
                         <tbody style="width: 100%">
                             <tr>
-                                <td style="padding: 10px 0; width: 30%; font-weight: bold; color: white; font-weight:bold">Campo: </td>
-                                <td style="padding: 10px 0; color: white;"><?= $data['field'] ?></td>     
-                            </tr>
-                            <tr>
-                                <td style="padding: 10px 0; width: 30%; font-weight: bold; color: white; font-weight:bold">Campo 2: </td>
-                                <td style="padding: 10px 0; color: white;">
-                                    <a href="<?= $data['field'] ?>" style="color: white">Link</a>
-                                </td>     
+                                <td style="padding: 10px 0; width: 30%; font-weight: bold; color: white; font-weight:bold">Nombres: </td>
+                                <td style="padding: 10px 0; color: white;"><?= $data['nombre'] ?></td>     
                             </tr>
                         </tbody>
                     </table>
