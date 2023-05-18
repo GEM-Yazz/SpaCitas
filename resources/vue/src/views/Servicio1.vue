@@ -18,8 +18,8 @@
         <p> Hasta 2 zonas</p>
         <hr class="hr-serv" size="4">
         <p class="c-servicio__pyt">1hr – $750</p>
-       <router-link type="button" class="c-button--servicios"
-          to="/?servi=masajereductivo">Reservar ahora</router-link>
+       <a type="button" class="c-button--servicios"
+          href="/?servi=masajereductivo">Reservar ahora</a>
     </div>
 
     <div class="col-sm-4">
@@ -31,8 +31,8 @@
       </p>
       <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 45min – $500</p>
-      <router-link type="button" class="c-button--servicios"
-          to="/?servi=lipopapadasincirugia">Reservar ahora</router-link>
+      <a type="button" class="c-button--servicios"
+          href="/?servi=lipopapadasincirugia">Reservar ahora</a>
     </div>
 
     <div class="col-sm-4">
@@ -43,12 +43,12 @@
         dar elasticidad y endurecer el músculo por contracciones isométricas.</p>
         <hr class="hr-serv" size="4">
        <p class="c-servicio__pyt"> 40min – $300</p>
-       <router-link type="button" class="c-button--servicios"
-          to="/?servi=gimnasiapasiva">Reservar ahora</router-link>
+       <a type="button" class="c-button--servicios"
+          href="/?servi=gimnasiapasiva">Reservar ahora</a>
     </div>
 </div>
 </div>
-
+a
     <!-- parte de abajo -->
 <div class="container pt-4 d-flex justify-content-around mb-3">
   <div class="row">
@@ -58,8 +58,8 @@
       <h3 class="c-servicio__titulo">Cavitación o radiofrecuencia</h3>
       <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 40min – $300</p>
-      <router-link type="button" class="c-button--servicios"
-          to="/?servi=cavitacionoradiofrecuencia">Reservar ahora</router-link>
+      <a type="button" class="c-button--servicios"
+          href="/?servi=cavitacionoradiofrecuencia">Reservar ahora</a>
     </div>
 
     <div class="col-sm-4">
@@ -69,8 +69,8 @@
       <p>Medias de compresión en piernas completas</p>
       <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 30min – $350</p>
-      <router-link type="button" class="c-button--servicios"
-          to="/?servi=presoterapia">Reservar ahora</router-link>
+      <a type="button" class="c-button--servicios"
+          href="/?servi=presoterapia">Reservar ahora</a>
     </div>
 
     <div class="col-sm-4">
@@ -80,8 +80,8 @@
       <p>Terapia manual y presoterapia</p>
       <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt">1 hora – $800 MXN</p>
-      <router-link type="button" class="c-button--servicios"
-          to="/?servi=masajerelajante">Reservar ahora</router-link>
+      <a type="button" class="c-button--servicios"
+          href="/?servi=masajerelajante">Reservar ahora</a>
     </div>
 </div>
 </div>

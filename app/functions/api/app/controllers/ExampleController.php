@@ -32,8 +32,7 @@ class ExampleController {
         $cita->telefono     = $request['telefono'];
         $cita->servicio     = $request['servicio'];
         $cita->sucursal     = $request['sucursal'];
-        $cita->email        = 'yazminbellohdez@gmail.com';
-        // $cita->email        = $request['email'];
+        $cita->email        = $request['email'];
         $cita->reserva      = $request['reserva'];
         $cita->hora         = $request['hora'];
 
@@ -93,13 +92,13 @@ class ExampleController {
             $mail->SMTPSecure   = $_ENV['MAIL_ENCRYPTATION'];
             $mail->Port         = 465;
 
-            $mail->setFrom($_ENV['MAIL_SENDER'], "SPA");
+            $mail->setFrom($_ENV['MAIL_SENDER'], "Caricia SPA");
             $mail->addAddress($cita->email);
 
             $body = __getEmailTemplate('cita', $cita);
 
             $mail->isHTML(true); 
-            $mail->Subject = '¡🥳 Gracias por tu reserva 🎉!';
+            $mail->Subject = '¡Gracias por tu reserva !';
             $mail->MsgHTML($body);
 
             $mail->send();

@@ -26,8 +26,8 @@
         <br>*Protector solar FPS 5. </p>
           <hr class="hr-serv" size="4">
         <p class="c-servicio__pyt">1hr – $450</p>
-        <router-link type="button" class="c-button--servicios"
-          to="/?servi=limpiezaprofunda">Reservar ahora</router-link>
+        <a type="button" class="c-button--servicios"
+          href="/?servi=limpiezaprofunda">Reservar ahora</a>
     </div>
 
     <div class="servic col-sm-4">
@@ -46,8 +46,8 @@
         <br>*Protector solar FPS 50. </p>
          <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 1hr – $500</p>
-      <router-link type="button" class="c-button--servicios"
-          to="/?servi=despigmentante">Reservar ahora</router-link>
+      <a type="button" class="c-button--servicios"
+          hrefa="/?servi=despigmentante">Reservar ahora</a>
     </div>
   </div>
 </div>
@@ -61,8 +61,8 @@
       <h3 class="c-servicio__titulo">Revitalizante</h3>
          <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 1hr – $450</p>
-      <router-link type="button" class="c-button--servicios"
-          to="/?servi=revitalizante">Reservar ahora</router-link>
+      <a type="button" class="c-button--servicios"
+          href="/?servi=revitalizante">Reservar ahora</a>
     </div>
 
     <div class="servic col-sm-4">
@@ -71,8 +71,8 @@
       <h3 class="c-servicio__titulo">Rejuvenecedor</h3>
          <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 1hr – $450</p>
-      <router-link type="button" class="c-button--servicios"
-          to="/?servi=rejuvenecedor">Reservar ahora</router-link>
+      <a type="button" class="c-button--servicios"
+          href="/?servi=rejuvenecedor">Reservar ahora</a>
     </div>
   </div>
 </div>

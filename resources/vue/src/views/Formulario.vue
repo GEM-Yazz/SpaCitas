@@ -86,7 +86,6 @@
               <h3 class="mt-4 mb-4">Tu información</h3>
             </div>
 
-            <form @submit.prevent="submit()" class="row gy-3">
               <div class="row d-flex justify-content-center mt-4 mb-2 text-center">
               <div style="font-weight: bold;" class="col-lg-2 menu-item">
                 Fecha:
@@ -106,6 +105,8 @@
             </div>
             <hr>
 
+          <!-- PASO 2 FORMULARIO -->
+            <form @submit.prevent="submit()" class="container row gy-3">
             <div class="col-lg-4 menu-item" :class="{ 'c-form-group--error': $v.nombre.$error }">
                Nombre: <br>
               <input style="width: 100%; padding: 5px 20px; margin: 6px 0;"
@@ -128,6 +129,13 @@
           <input style="width: 100%; padding: 5px 20px; margin: 6px 0;"
            v-model="telefono" type="number" placeholder="Teléfono"
            v-model.trim="$v.telefono.$model" />
+     <span class="c-form-group__error" v-if="!$v.telefono.required">El teléfono está vacío</span>
+              </div><!-- Menu Item -->
+      <br>
+              <div class="col-lg-4 menu-item" style="margin-left: 348px;">
+                Correo Electronico: <br>
+          <input style="width: 100%; padding: 5px 20px; margin: 6px 0;"
+           v-model="email" type="email" placeholder="E-mail"/>
      <span class="c-form-group__error" v-if="!$v.telefono.required">El teléfono está vacío</span>
               </div><!-- Menu Item -->
 

@@ -16,8 +16,8 @@
       <p></p>
           <hr class="hr-serv" size="4">
         <p class="c-servicio__pyt">$550</p>
-        <router-link type="button" class="c-button--servicios"
-          to="/?servi=peclasica">Reservar ahora</router-link>
+        <a type="button" class="c-button--servicios"
+          href="/?servi=peclasica">Reservar ahora</a>
     </div>
 
     <div class="servic col-sm-4">
@@ -27,8 +27,8 @@
       <p></p>
          <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt">$650</p>
-      <router-link type="button" class="c-button--servicios"
-          to="/?servi=pehibrida">Reservar ahora</router-link>
+      <a type="button" class="c-button--servicios"
+          href="/?servi=pehibrida">Reservar ahora</a>
     </div>
   </div>
 </div>
@@ -42,8 +42,8 @@
       <h3 class="c-servicio__titulo">Volumen</h3>
          <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> $800</p>
-      <router-link type="button" class="c-button--servicios"
-          to="/?servi=pevolumen">Reservar ahora</router-link>
+      <a type="button" class="c-button--servicios"
+         href="/?servi=pevolumen">Reservar ahora</a>
     </div>
 
     <div class="servic col-sm-4">
@@ -52,8 +52,8 @@
       <h3 class="c-servicio__titulo">Hawaiano</h3>
          <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 1hr – $450</p>
-      <router-link type="button" class="c-button--servicios"
-          to="/?servi=pehawaiano">Reservar ahora</router-link>
+      <a type="button" class="c-button--servicios"
+          href="/?servi=pehawaiano">Reservar ahora</a>
     </div>
   </div>
 </div>
