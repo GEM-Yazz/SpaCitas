@@ -3,7 +3,7 @@
 require_once(__DIR__ . "/config.php");
 require_once(__DIR__ . "/database/main.php");
 
-$appModels         = ['Example', 'Cita'];
+$appModels         = ['Example', 'Cita','UserCalendar'];
 $appControllers    = ['PageController', 'ExampleController'];
 $appRoutes         = ['PageRouter', 'ExampleRouter'];
 

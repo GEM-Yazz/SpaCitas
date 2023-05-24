@@ -90,3 +90,22 @@
     }
   }
 }
+
+.hourbutton {
+  background-color: #fff;
+  border-color: $primary-color;
+
+  @include b-radious(5px);
+
+  &:hover,
+  &:focus {
+    color: #fcf8f8;
+    background-color: #d8759e;
+  }
+}
+
+@include media-breakpoint-only(xl) {
+  .hourbutton {
+    padding: 0.5rem 1rem;
+  }
+}

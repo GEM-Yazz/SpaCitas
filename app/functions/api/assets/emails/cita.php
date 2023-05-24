@@ -6,8 +6,8 @@
           <td width="600" align="center">
           <div style="background: #D8759E; color: white; width: 100%; max-width: 640px;">
               <header style="background: #F8F3F5; padding: 1rem;">
-                  <!-- <img src="<?= get_template_directory_uri() ?>@/assets/images/CariciaLogoGray.png" style="width: 100px;">-->
-
+                  <img src="<?= get_template_directory_uri() ?>/static/public/logo.png" style="width: 100px;">
+                 </header>
               <div style="padding: 1rem;">
                   <h1 style="font-size: 25px; color: white;">Gracias por su reserva</h1>
 

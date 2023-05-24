@@ -41,10 +41,10 @@
             <div class="calendarsuc row">
 
               <form>
-                <div class="custom-select">
-                 Sucursal: <br>
+                <div class="custom-select" >
+                <h5> Sucursal: </h5>
              <select style="width: 40%; padding: 5px 20px; margin: 6px 0;"
-               v-model="sucursal">
+               v-model="sucursal" v-model.trim="$v.sucursal.$model">
               <option disabled> Elija una sucursal </option>
               <option value="PlazaLasPergolas">
                  Plaza Las Pérgolas </option>
@@ -52,32 +52,34 @@
                  Sucursal Centro </option>
               </select>
               <hr style="margin-right: 90px;">
-              <br>
           </div><!-- Menu Item -->
             </form>
 
 <!--===CALENDARIO Inicio===-->
     <div class="">
-      <div class="tiselcf"> Selecciona una fecha *</div>
-    <p></p>
-   <p class="row mb-4">
+      <h5> Selecciona una fecha:</h5>
+
+  {{fecha.toLocaleDateString
+    ('es-ES', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}}
+    <br><br>
+
+  <p class="row mb-7">
     <vc-date-picker :min-date='new Date()' :disabled-dates='{ weekdays: [2] }'
-     color="pink" class="calndar col-2" trim-weeks v-model="fecha"
+    color="pink" class="calndar col-3" trim-weeks v-model="fecha"
       @dayclick="$event => getHoursByDay()"/>
 
-      <ul class="row col-4">
-         <p class="row col-6"
+      <ul class="row col">
+        <p class="col-6"
           v-for="(item, indice) of hours"
           :key="`hora${indice}`" >
-          <button @click="saveHour(item.hora)" data-aos="fade-up"
-           class="col-10"> {{ item.hora }}</button>
-         </p>
-     </ul>
+          <button @click="saveHour(item.hora)"
+          class="hourbutton col-8"> {{ item.hora }}</button>
+        </p>
+    </ul>
     </p>
-           <p>{{fecha.toLocaleDateString
-    ('es-ES', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}} </p>
     </div><!-- Menu Item -->
 <!--===CALENDARIO FIN===-->
+
             </div>
           </div><!-- End Paso1 Menu Content -->
 
@@ -89,10 +91,10 @@
               <div class="row d-flex justify-content-center mt-4 mb-2 text-center">
               <div style="font-weight: bold;" class="col-lg-2 menu-item">
                 Fecha:
-               <div style="font-weight: normal;" >
-               {{fecha.toLocaleDateString
-               ('es-ES', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}}
-               </div>
+                <div style="font-weight: normal;" >
+                {{fecha.toLocaleDateString
+                ('es-ES', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}}
+                </div>
               </div><!-- Menu Item -->
               <div style="font-weight: bold;" class="col-lg-2 menu-item ">
                 Hora:
@@ -106,9 +108,10 @@
             <hr>
 
           <!-- PASO 2 FORMULARIO -->
-            <form @submit.prevent="submit()" class="container row gy-3">
+            <form @submit.prevent="submit()" class="container row gy-3"
+            :class="{'c-form-group--error': $v.sucursal.$error }">
             <div class="col-lg-4 menu-item" :class="{ 'c-form-group--error': $v.nombre.$error }">
-               Nombre: <br>
+              *Nombre: <br>
               <input style="width: 100%; padding: 5px 20px; margin: 6px 0;"
                v-model="nombre" type="text" placeholder="Nombre" v-model.trim="$v.nombre.$model" />
             <span class="c-form-group__error" v-if="!$v.nombre.required">El nombre está vacío</span>
@@ -116,7 +119,7 @@
 
               <div class="col-lg-4 menu-item"
               :class="{ 'c-form-group--error': $v.apellidos.$error }">
-                Apellidos: <br>
+                *Apellidos: <br>
           <input style="width: 100%; padding: 5px 20px; margin: 6px 0;"
            v-model="apellidos" type="text" placeholder="Apellidos"
            v-model.trim="$v.apellidos.$model" />
@@ -125,20 +128,20 @@
 
               <div class="col-lg-4 menu-item"
                :class="{ 'c-form-group--error': $v.telefono.$error }">
-                Teléfono: <br>
+                *Teléfono: <br>
           <input style="width: 100%; padding: 5px 20px; margin: 6px 0;"
            v-model="telefono" type="number" placeholder="Teléfono"
            v-model.trim="$v.telefono.$model" />
      <span class="c-form-group__error" v-if="!$v.telefono.required">El teléfono está vacío</span>
               </div><!-- Menu Item -->
       <br>
-              <div class="col-lg-4 menu-item" style="margin-left: 348px;">
-                Correo Electronico: <br>
+              <div class="col-lg-4 menu-item">
+                Correo Electronico [Opcional]: <br>
           <input style="width: 100%; padding: 5px 20px; margin: 6px 0;"
            v-model="email" type="email" placeholder="E-mail"/>
-     <span class="c-form-group__error" v-if="!$v.telefono.required">El teléfono está vacío</span>
               </div><!-- Menu Item -->
-
+      <span class="text-center c-form-group__error"
+       v-if="!$v.sucursal.required">La sucursal está vacía</span>
             <hr>
 
               <div class="col-lg-2 menu-item">
@@ -225,6 +228,9 @@ export default {
     telefono: {
       required,
     },
+    sucursal: {
+      required,
+    },
   },
 
   watch: {
@@ -277,6 +283,7 @@ export default {
       if (!this.$v.$invalid) {
         alert('Reservado con exito! Gracias, la esperamos <3');
         alert('Si quiere cancelar su cita, contacte al número');
+        // window.location.href = '/inicio';
       } else {
         alert('Porfavor llene los espacios');
       }
@@ -373,7 +380,7 @@ export default {
 
     cargarServicio4() {
       if (this.$route.query.servi === 'peclasica') {
-        this.serviceTitle = 'Pestañas Clásica';
+        this.serviceTitle = 'Pestañas Clásicas';
         this.price = '';
       } else if (this.$route.query.servi === 'pehibrida') {
         this.serviceTitle = 'Pestañas Híbridas';
