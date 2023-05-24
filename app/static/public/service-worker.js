@@ -14,7 +14,11 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
+<<<<<<< HEAD
   "/wp-content/themes/pandawp/app/static/public/precache-manifest.6942171c7bc409ae6306c79114784c15.js"
+=======
+  "/wp-content/themes/pandawp/app/static/public/precache-manifest.40dfa6ab79c508534bd30f54c84dade4.js"
+>>>>>>> 246b81fb63517f3d450dc48417ffeb80c0ff0775
 );
 
 workbox.core.setCacheNameDetails({prefix: "pandawp-vue"});
