@@ -35,7 +35,7 @@
       <h4> [Solo en Plaza las Pérgolas] </h4>
       <div id="manicura" class="container pt-4">
         <div class="row">
-    <div class="servic colaa-sm-4">
+    <div class="servic col-sm-4">
       <img src="@/assets/images/manicurespa.jpg" class="c-servicio-imagen rounded-circle mb-4
        mx-auto d-block" alt="Masaje reductivo">
       <h3>Manicure Ruso</h3>

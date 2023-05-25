@@ -16,8 +16,8 @@
                           <tr>
                               <td style="padding: 10px 0; width: 30%; font-weight: bold; color: white; font-weight:bold">Al nombre de: </td>
                               <td style="padding: 10px 0; color: white;"><?= $data['nombre'] ?></td>   
-                          </tr>
-                          <tr>
+                        </tr>
+                        <tr>
                             <td style="padding: 10px 0; width: 30%; font-weight: bold; color: white; font-weight:bold">Servicio(s): </td>
                             <td style="padding: 10px 0; color: white;"><?= $data['servicio'] ?></td>   
                         </tr>

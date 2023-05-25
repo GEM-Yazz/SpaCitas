@@ -46,7 +46,7 @@ class ExampleController {
 
         if ($cita) {
             $this->__sendNotify($cita);
-            $this->createEvent($request);
+            $this->createEvent($cita);
         }
 
         return $cita;
@@ -131,23 +131,25 @@ class ExampleController {
             'code'    => 200
         ];
     }
-    public function createEvent($request) {
+    public function createEvent($cita) {
         try {
-            //$usercalendar = UserCalendar::first();
+            $googleClient = self::__getGoogleClient(45);
 
-            $calendarService = new Google_Service_Calendar(self::__getGoogleClient('4/0AbUR2VOjXfuPRkp23nA37RTDSegEVjUe0dlpKS1PubEw_2l-lQ1m0OO9dB-2h19UD4Aarg'));
+            $calendarService = new Google_Service_Calendar($googleClient);
             $calendarId = 'primary';
+            $hourCita = date("H:i:s", strtotime($cita->hora));
+            $fechaReservaCita = $cita->reserva.'T'.$hourCita;
 
             $event = new Google_Service_Calendar_Event(array(
-                'summary' => 'Cita',
-                //'location' => 'Estadio Lawn Tennis, Avenida General Salaverry, Jesús María',
-                'description' => 'RESERVA SERVICIO',
+                'summary' => 'Rervacion de: '.$cita->nombre.' '.$cita->apellidos,
+                //'location' => 'SUCURSAL',
+                'description' => "<p><strong>Nombre: </strong> ". $cita->nombre ."</p>" ,
                 'start' => array(
-                    'dateTime' => '2023-05-28T14:00:00',
+                    'dateTime' => $fechaReservaCita,
                     'timeZone' => 'America/Mexico_City',
                 ),
                 'end' => array(
-                    'dateTime' => '2023-05-29T15:00:00',
+                    'dateTime' => $fechaReservaCita,
                     'timeZone' => 'America/Mexico_City',
                 ),
                 'recurrence' => array(
@@ -162,6 +164,10 @@ class ExampleController {
                 ),
             ));
 
+            $event->setAttendees([
+                ['email' => $cita->email],
+            ]);
+
             $event = $calendarService->events->insert($calendarId, $event, ['sendUpdates' => 'all']);
 
             return (object)[
@@ -175,19 +181,22 @@ class ExampleController {
         }
     }
 
- private function __getGoogleClient($googleAuthCode) {
+    private function __getGoogleClient($googleAuthCode) {
         $client = new Google_Client();
         $client->setApplicationName('CitasSpa');
         $client->setScopes(Google_Service_Calendar::CALENDAR);
         $client->setAuthConfig(__DIR__ . '/../../assets/auth/credentials.json');
         $client->setAccessType('offline');
 
-        $accessToken = $client->fetchAccessTokenWithAuthCode($googleAuthCode);
+       // $accessToken = $client->fetchAccessTokenWithAuthCode($googleAuthCode);
+        $userCalendar = UserCalendar::first();
+        $accessToken = $userCalendar->code;
+
         $client->setAccessToken($accessToken);
 
-        if (array_key_exists('error', $accessToken)) {
-            throw new Exception(join(', ', $accessToken));
-        }
+        // if (array_key_exists('error', $accessToken)) {
+        //     throw new Exception(join(', ', $accessToken));
+        // }
 
         return $client;
     }
