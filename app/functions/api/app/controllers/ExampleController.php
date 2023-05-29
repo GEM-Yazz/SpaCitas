@@ -131,6 +131,7 @@ class ExampleController {
             'code'    => 200
         ];
     }
+
     public function createEvent($request) {
         try {
             //$usercalendar = UserCalendar::first();
@@ -175,7 +176,28 @@ class ExampleController {
         }
     }
 
- private function __getGoogleClient($googleAuthCode) {
+    public function storeGoogleToken($request) {
+        $client = new Google_Client();
+        $client->setApplicationName('CitasSpa');
+        $client->setScopes(Google_Service_Calendar::CALENDAR);
+        $client->setAuthConfig(__DIR__ . '/../../assets/auth/credentials.json');
+        $client->setAccessType('offline');
+
+        $accessToken = $client->fetchAccessTokenWithAuthCode($request['code']);
+
+        // Guardar token en la BD
+        $userCalendar = new UserCalendar();
+
+        $userCalendar->user_id = 1;
+        $userCalendar->code = $accessToken;
+
+        $userCalendar->save();
+
+        if ($userCalendar) return true;
+        else return false;
+    }
+
+    private function __getGoogleClient($googleAuthCode) {
         $client = new Google_Client();
         $client->setApplicationName('CitasSpa');
         $client->setScopes(Google_Service_Calendar::CALENDAR);
@@ -183,6 +205,7 @@ class ExampleController {
         $client->setAccessType('offline');
 
         $accessToken = $client->fetchAccessTokenWithAuthCode($googleAuthCode);
+
         $client->setAccessToken($accessToken);
 
         if (array_key_exists('error', $accessToken)) {

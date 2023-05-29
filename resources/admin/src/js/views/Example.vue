@@ -10,9 +10,15 @@ export default {
   data() {
     return {
       context: {...panda},
+      metas: new URLSearchParams(window.location.search),
 
-      title: 'Example',
+      title: 'Agregar calendario',
     };
+  },
+  mounted() {
+    if (this.metas.get('code')) {
+      this.storeToken(this.metas.get('code'));
+    }
   },
   methods: {
     auth() {
@@ -24,7 +30,23 @@ export default {
         .then((response) => {
           window.location.href = response.data.data;
         });
-    }
+    },
+    storeToken(code) {
+      const formData = new FormData();
+
+      formData.append('code', code);
+
+      fetch(`${this.context.api}/citas/auth/token`, {
+        method: 'POST',
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.status) {
+            alert('Token guardado exitosamente')
+          }
+        });
+    },
   }
 };
 </script>

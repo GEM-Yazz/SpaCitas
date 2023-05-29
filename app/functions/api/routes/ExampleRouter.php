@@ -39,6 +39,13 @@ class ExampleRouter {
                 },
             ));
 
+            register_rest_route('custom/v1', '/citas/auth/token', array(
+                'methods' => 'POST',
+                'callback' => array($this, 'storeGoogleToken'),
+                'permission_callback' => function ($request) {
+                    return true;
+                },
+            ));
         });
 
     }
@@ -100,6 +107,44 @@ class ExampleRouter {
         }
     }
 
+    public function authGoogle($request) {
+        try {
+            $data = (new ExampleController())->authGoogle($request);
+            
+            return wp_send_json([
+                'code'      => 200,
+                'message'   => $data ? 'Example here!!' : 'No example here 😥',
+                'data'      => $data,
+                'status'    => $data ? true : false
+            ], 200);
+        } catch (Exception $e) {
+            return wp_send_json([
+                'code'      => $e->getCode() ?? 502,
+                'message'   => $e->getMessage(),
+                'status'    => false
+            ], $e->getCode() ?? 502);
+        }
+    }
+
+    public function storeGoogleToken($request) {
+        try {
+            $data = (new ExampleController())->storeGoogleToken($request);
+            
+            return wp_send_json([
+                'code'      => 200,
+                'message'   => $data ? 'Token guardado!!' : 'No Token guardado 😥',
+                'data'      => $data,
+                'status'    => $data ? true : false
+            ], 200);
+        } catch (Exception $e) {
+            return wp_send_json([
+                'code'      => $e->getCode() ?? 502,
+                'message'   => $e->getMessage(),
+                'status'    => false
+            ], $e->getCode() ?? 502);
+        }
+    }
+
     private function __getArgs($selectedRules) {
         $rules = [
             'id' => [
@@ -122,24 +167,4 @@ class ExampleRouter {
             ? array_intersect_key($rules, array_flip($selectedRules))
             : $rules;
     }
-
-    public function authGoogle($request) {
-        try {
-            $data = (new ExampleController())->authGoogle($request);
-            
-            return wp_send_json([
-                'code'      => 200,
-                'message'   => $data ? 'Example here!!' : 'No example here 😥',
-                'data'      => $data,
-                'status'    => $data ? true : false
-            ], 200);
-        } catch (Exception $e) {
-            return wp_send_json([
-                'code'      => $e->getCode() ?? 502,
-                'message'   => $e->getMessage(),
-                'status'    => false
-            ], $e->getCode() ?? 502);
-        }
-    }
-
 }
