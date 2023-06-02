@@ -44,7 +44,7 @@
         <hr class="hr-serv" size="4">
         <p class="c-servicio__pyt">30min – $170 MXN</p>
          <a type="button" class="c-button--servicios"
-          href="/?servi=manicureruso&sucursal=PlazaLasPergolas">Reservar ahora</a>
+          href="/formulario?servi=manicureruso&sucursal=PlazaLasPergolas">Reservar ahora</a>
     </div>
     <div class="servic col-sm-4">
       <img src="@/assets/images/manicurespa.jpg" class="c-servicio-imagen rounded-circle mb-4
@@ -56,7 +56,7 @@
       <hr class="servic hr-serv" size="4">
       <p class="c-servicio__pyt"> 1hr – $300 MXN</p>
       <a type="button" class="c-button--servicios"
-          href="/?servi=manicurebiojelly&sucursal=PlazaLasPergolas">Reservar ahora</a>
+          href="/formulario?servi=manicurebiojelly&sucursal=PlazaLasPergolas">Reservar ahora</a>
     </div>
     <div class="servic col-sm-4">
       <img src="@/assets/images/manicurespa.jpg" class="c-servicio-imagen rounded-circle mb-4
@@ -67,7 +67,7 @@
         <hr class="hr-serv" size="4">
        <p class="c-servicio__pyt"> 1hr – $300 MXN</p>
        <a type="button" class="c-button--servicios"
-    href="/?servi=manicurespa&sucursal=PlazaLasPergolas">Reservar ahora</a>
+    href="/formulario?servi=manicurespa&sucursal=PlazaLasPergolas">Reservar ahora</a>
     </div>
 </div>
 </div>
@@ -86,7 +86,7 @@
         <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 30min – $200 MXN</p>
       <a type="button" class="c-button--servicios"
-          href="/?servi=pedicureruso&sucursal=PlazaLasPergolas">Reservar ahora</a>
+          href="/formulario?servi=pedicureruso&sucursal=PlazaLasPergolas">Reservar ahora</a>
     </div>
     <div class="servic col-sm-4">
       <img src="@/assets/images/manicurespa.jpg" class="c-servicio-imagen rounded-circle mb-4
@@ -108,7 +108,7 @@
       <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt">1hr – $350 MXN</p>
       <a type="button" class="c-button--servicios"
-          href="/?servi=pedicurespa&sucursal=PlazaLasPergolas">Reservar ahora</a>
+          href="/formulario?servi=pedicurespa&sucursal=PlazaLasPergolas">Reservar ahora</a>
     </div>
 </div>
 </div>
@@ -124,7 +124,7 @@
         <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 2hr – $400 MXN</p>
       <a type="button" class="c-button--servicios"
-          href="/?servi=unasesculturales&sucursal=PlazaLasPergolas">Reservar ahora</a>
+          href="/formulario?servi=unasesculturales&sucursal=PlazaLasPergolas">Reservar ahora</a>
     </div>
     <div class="servic col-sm-4">
       <img src="@/assets/images/uñas-acrilicas.png" class="c-servicio-imagen rounded-circle mb-4
@@ -156,7 +156,7 @@
         <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 30 min – $150 MXN</p>
       <a type="button" class="c-button--servicios"
-          href="/?spa=aplicaciondegelish&sucursal=PlazaLasPergolas">Reservar ahora</a>
+          href="/formulario?spa=aplicaciondegelish&sucursal=PlazaLasPergolas">Reservar ahora</a>
     </div>
     <div class="servic col-sm-4">
       <img src="@/assets/images/manicurespa.jpg" class="c-servicio-imagen rounded-circle mb-4
@@ -166,7 +166,7 @@
       <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 20min – $100 MXN </p>
       <aa type="button" class="c-button--servicios"
-          href="/?servi=reparacionuñas&sucursal=PlazaLasPergolas">Reservar ahora</aa>
+          href="/formulario?servi=reparacionuñas&sucursal=PlazaLasPergolas">Reservar ahora</aa>
     </div>
 </div>
     </div>

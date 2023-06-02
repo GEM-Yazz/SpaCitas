@@ -27,7 +27,7 @@
           <hr class="hr-serv" size="4">
         <p class="c-servicio__pyt">1hr – $450</p>
         <a type="button" class="c-button--servicios"
-          href="/?servi=limpiezaprofunda">Reservar ahora</a>
+          href="/formulario?servi=limpiezaprofunda">Reservar ahora</a>
     </div>
 
     <div class="servic col-sm-4">
@@ -47,7 +47,7 @@
          <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 1hr – $500</p>
       <a type="button" class="c-button--servicios"
-          hrefa="/?servi=despigmentante">Reservar ahora</a>
+          hrefa="/formulario?servi=despigmentante">Reservar ahora</a>
     </div>
   </div>
 </div>
@@ -62,7 +62,7 @@
          <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 1hr – $450</p>
       <a type="button" class="c-button--servicios"
-          href="/?servi=revitalizante">Reservar ahora</a>
+          href="/formulario?servi=revitalizante">Reservar ahora</a>
     </div>
 
     <div class="servic col-sm-4">
@@ -72,7 +72,7 @@
          <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 1hr – $450</p>
       <a type="button" class="c-button--servicios"
-          href="/?servi=rejuvenecedor">Reservar ahora</a>
+          href="/formulario?servi=rejuvenecedor">Reservar ahora</a>
     </div>
   </div>
 </div>

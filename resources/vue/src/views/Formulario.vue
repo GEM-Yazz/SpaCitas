@@ -86,6 +86,7 @@
           <div class="tab-pane fade" id="paso2">
             <div class="tab-header text-center">
               <h3 class="mt-4 mb-4">Tu información</h3>
+              <h4 class="mt-4 mb-4">revise que sus datos sean correctos</h4>
             </div>
 
               <div class="row d-flex justify-content-center mt-4 mb-2 text-center">
@@ -176,7 +177,12 @@
               </div><!-- Menu Item -->
 
               <div class="mb-4 col-lg-2 menu-item ">
-                <button class="c-button--accept" @click="$event => guardar()">Reservar</button>
+                <button
+                  :disabled="isSending"
+                  class="c-button--accept"
+                  @click="$event => guardar()">
+                  {{ (isSending) ? 'Reservando, Espere un momento :)' : 'Reservar' }}
+                </button>
               </div><!-- Menu Item -->
             </div>
 
@@ -215,6 +221,7 @@ export default {
       fecha: new Date(),
       hours: [],
       disable_dates: [],
+      isSending: false,
     };
   },
 
@@ -256,34 +263,56 @@ export default {
   },
 
   methods: {
-    guardar() {
-      const form = new FormData();
-      form.append('nombre', this.nombre);
-      form.append('apellidos', this.apellidos);
-      form.append('telefono', this.telefono);
-      form.append('servicio', this.serviceTitle);
-      form.append('sucursal', this.sucursal);
-      form.append('email', this.email);
-      form.append('reserva', this.fecha.toLocaleDateString('sv'));
-      form.append('hora', this.hora);
+    // guardar() {
+    //   const form = new FormData();
+    //   form.append('nombre', this.nombre);
+    //   form.append('apellidos', this.apellidos);
+    //   form.append('telefono', this.telefono);
+    //   form.append('servicio', this.serviceTitle);
+    //   form.append('sucursal', this.sucursal);
+    //   form.append('email', this.email);
+    //   form.append('reserva', this.fecha.toLocaleDateString('sv'));
+    //   form.append('hora', this.hora);
 
-      fetch(`${process.env.VUE_APP_API}/citas`, {
-        method: 'POST',
-        body: form,
-      })
+    //   fetch(`${process.env.VUE_APP_API}/citas`, {
+    //     method: 'POST',
+    //     body: form,
+    //   })
 
-        .then((res) => res.json())
-        .then((response) => {
-          console.log(response);
-        });
-    },
+    //     .then((res) => res.json())
+    //     .then((response) => {
+    //       console.log(response);
+    //     });
+    // },
 
     submit() {
       this.$v.$touch();
+      this.isSending = true;
       if (!this.$v.$invalid) {
-        alert('Reservado con exito! Gracias, la esperamos <3');
-        alert('Si quiere cancelar su cita, contacte al número');
-        // window.location.href = '/inicio';
+        const form = new FormData();
+        form.append('nombre', this.nombre);
+        form.append('apellidos', this.apellidos);
+        form.append('telefono', this.telefono);
+        form.append('servicio', this.serviceTitle);
+        form.append('sucursal', this.sucursal);
+        form.append('email', this.email);
+        form.append('reserva', this.fecha.toLocaleDateString('sv'));
+        form.append('hora', this.hora);
+
+        fetch(`${process.env.VUE_APP_API}/citas`, {
+          method: 'POST',
+          body: form,
+        })
+
+          .then((res) => res.json())
+          .then((response) => {
+            this.isSending = false;
+            if (response.status) {
+              alert('Reservado con exito! Gracias, la esperamos <3');
+              alert('Si quiere cancelar su cita, contacte al número #######');
+            }
+          });
+        // window.location.href = '/confirmacion';
       } else {
         alert('Porfavor llene los espacios');
       }

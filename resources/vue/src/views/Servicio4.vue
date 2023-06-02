@@ -17,7 +17,7 @@
           <hr class="hr-serv" size="4">
         <p class="c-servicio__pyt">$550</p>
         <a type="button" class="c-button--servicios"
-          href="/?servi=peclasica">Reservar ahora</a>
+          href="/formulario?servi=peclasica">Reservar ahora</a>
     </div>
 
     <div class="servic col-sm-4">
@@ -28,7 +28,7 @@
          <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt">$650</p>
       <a type="button" class="c-button--servicios"
-          href="/?servi=pehibrida">Reservar ahora</a>
+          href="/formulario?servi=pehibrida">Reservar ahora</a>
     </div>
   </div>
 </div>
@@ -43,7 +43,7 @@
          <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> $800</p>
       <a type="button" class="c-button--servicios"
-         href="/?servi=pevolumen">Reservar ahora</a>
+         href="/formulario?servi=pevolumen">Reservar ahora</a>
     </div>
 
     <div class="servic col-sm-4">
@@ -53,7 +53,7 @@
          <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 1hr – $450</p>
       <a type="button" class="c-button--servicios"
-          href="/?servi=pehawaiano">Reservar ahora</a>
+          href="/formulario?servi=pehawaiano">Reservar ahora</a>
     </div>
   </div>
 </div>

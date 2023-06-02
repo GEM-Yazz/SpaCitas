@@ -105,7 +105,7 @@ class ExampleController {
             $body = __getEmailTemplate('cita', $cita);
 
             $mail->isHTML(true); 
-            $mail->Subject = '¡Gracias por tu reserva !';
+            $mail->Subject = 'Caricia Spa ¡Reserva exitosa!';
             $mail->MsgHTML($body);
 
             $mail->send();
@@ -134,7 +134,7 @@ class ExampleController {
 
     public function createEvent($cita) {
         try {
-            $googleClient = self::__getGoogleClient(45);
+            $googleClient = self::__getGoogleClient();
 
             $calendarService = new Google_Service_Calendar($googleClient);
             $calendarId = 'primary';
@@ -142,9 +142,12 @@ class ExampleController {
             $fechaReservaCita = $cita->reserva.'T'.$hourCita;
 
             $event = new Google_Service_Calendar_Event(array(
-                'summary' => 'Rervacion de: '.$cita->nombre.' '.$cita->apellidos,
+                'summary' => 'Caricia Spa Rervaciónn: '.$cita->nombre.' '.$cita->apellidos,
                 //'location' => 'SUCURSAL',
-                'description' => "<p><strong>Nombre: </strong> ". $cita->nombre ."</p>" ,
+                'description' => "<p><strong>Nombre: </strong>". $cita->nombre . ' '. $cita->apellidos .
+                "<p><strong>Teléfono: </strong> ". $cita->telefono ."</p>".
+                "<p><strong>Servicio: </strong> ". $cita->servicio ."</p>".
+                "<p><strong>Hora: </strong> ". $cita->hora ."</p>",
                 'start' => array(
                     'dateTime' => $fechaReservaCita,
                     'timeZone' => 'America/Mexico_City',
@@ -190,12 +193,16 @@ class ExampleController {
         $client->setAccessType('offline');
 
         $accessToken = $client->fetchAccessTokenWithAuthCode($request['code']);
+        
+        if (array_key_exists('error', $accessToken)) {
+            throw new Exception(join(', ', $accessToken));
+        }
 
         // Guardar token en la BD
         $userCalendar = new UserCalendar();
 
         $userCalendar->user_id = 1;
-        $userCalendar->code = $accessToken;
+        $userCalendar->code = $accessToken['access_token'];
 
         $userCalendar->save();
 
@@ -203,22 +210,17 @@ class ExampleController {
         else return false;
     }
 
-    private function __getGoogleClient($googleAuthCode) {
+    private function __getGoogleClient() {
         $client = new Google_Client();
         $client->setApplicationName('CitasSpa');
         $client->setScopes(Google_Service_Calendar::CALENDAR);
         $client->setAuthConfig(__DIR__ . '/../../assets/auth/credentials.json');
         $client->setAccessType('offline');
 
-       // $accessToken = $client->fetchAccessTokenWithAuthCode($googleAuthCode);
-        $userCalendar = UserCalendar::first();
+        $userCalendar = UserCalendar::orderBy('id','desc')->first();
         $accessToken = $userCalendar->code;
 
         $client->setAccessToken($accessToken);
-
-        // if (array_key_exists('error', $accessToken)) {
-        //     throw new Exception(join(', ', $accessToken));
-        // }
 
         return $client;
     }

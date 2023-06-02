@@ -19,7 +19,7 @@
         <hr class="hr-serv" size="4">
         <p class="c-servicio__pyt">1hr – $750</p>
        <a type="button" class="c-button--servicios"
-          href="/?servi=masajereductivo">Reservar ahora</a>
+          href="/formulario?servi=masajereductivo">Reservar ahora</a>
     </div>
 
     <div class="col-sm-4">
@@ -32,7 +32,7 @@
       <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 45min – $500</p>
       <a type="button" class="c-button--servicios"
-          href="/?servi=lipopapadasincirugia">Reservar ahora</a>
+          href="/formulario?servi=lipopapadasincirugia">Reservar ahora</a>
     </div>
 
     <div class="col-sm-4">
@@ -44,7 +44,7 @@
         <hr class="hr-serv" size="4">
        <p class="c-servicio__pyt"> 40min – $300</p>
        <a type="button" class="c-button--servicios"
-          href="/?servi=gimnasiapasiva">Reservar ahora</a>
+          href="/formulario?servi=gimnasiapasiva">Reservar ahora</a>
     </div>
 </div>
 </div>
@@ -59,7 +59,7 @@ a
       <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 40min – $300</p>
       <a type="button" class="c-button--servicios"
-          href="/?servi=cavitacionoradiofrecuencia">Reservar ahora</a>
+          href="/formulario?servi=cavitacionoradiofrecuencia">Reservar ahora</a>
     </div>
 
     <div class="col-sm-4">
@@ -70,7 +70,7 @@ a
       <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt"> 30min – $350</p>
       <a type="button" class="c-button--servicios"
-          href="/?servi=presoterapia">Reservar ahora</a>
+          href="/formulario?servi=presoterapia">Reservar ahora</a>
     </div>
 
     <div class="col-sm-4">
@@ -81,7 +81,7 @@ a
       <hr class="hr-serv" size="4">
       <p class="c-servicio__pyt">1 hora – $800 MXN</p>
       <a type="button" class="c-button--servicios"
-          href="/?servi=masajerelajante">Reservar ahora</a>
+          href="/formulario?servi=masajerelajante">Reservar ahora</a>
     </div>
 </div>
 </div>

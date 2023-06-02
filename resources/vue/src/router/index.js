@@ -5,7 +5,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
+    path: '/formulario',
     name: 'Formulario',
     component: () => import(/* webpackChunkName: "home" */ '../views/Formulario.vue'),
   },
@@ -28,7 +28,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "single" */ '../views/example/Single.vue'),
   },
   {
-    path: '/inicio',
+    path: '/',
     name: 'Inicio',
     component: () => import(/* webpackChunkName: "example" */ '../views/Inicio.vue'),
   },
@@ -51,6 +51,16 @@ const routes = [
     path: '/servicio4',
     name: 'Servicio4',
     component: () => import(/* webpackChunkName: "example" */ '../views/Servicio4.vue'),
+  },
+  {
+    path: '/contrataciones',
+    name: 'Contrataciones',
+    component: () => import(/* webpackChunkName: "example" */ '../views/contrataciones.vue'),
+  },
+  {
+    path: '/confirmacion',
+    name: 'validacion',
+    component: () => import(/* webpackChunkName: "example" */ '../views/confirmacion.vue'),
   },
   {
     path: '*',
