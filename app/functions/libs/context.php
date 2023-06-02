@@ -7,7 +7,8 @@ function getContextVariables($context = []) {
         'nonce'     => wp_create_nonce( 'wp_rest' ),
         'api'       => get_rest_url() . "custom/v1",
         'assets'    => get_template_directory_uri() . "/static" . $staticDir,
-        'vertion'   => ( require get_theme_file_path('config/base.php') )['vertion']
+        'vertion'   => ( require get_theme_file_path('config/base.php') )['vertion'],
+        'user_id'   => get_current_user_id(),
     ]);
 
     return $context;

@@ -21,13 +21,18 @@ class ExampleController {
     public function __construct() { }
 
     public function index($request) {
-        $examples = Example::all();
+        $users = get_users([
+            'meta_query' => [
+                [
+                    'key'       => 'sucursal',
+                    'value'     => 'PlazaLasPergolas',
+                    'compare'   => '='
+                ]
+            ]
+        ]);
+        $userIdFromSucursal = $users[0]->ID;
 
-        if (count($examples)) {
-            return $examples;
-        } else {
-            throw new Exception('No examples found');
-        }
+        return $userIdFromSucursal;
     }
 
     public function storeCitas($request){
@@ -134,7 +139,7 @@ class ExampleController {
 
     public function createEvent($cita) {
         try {
-            $googleClient = self::__getGoogleClient();
+            $googleClient = self::__getGoogleClient($cita->sucursal);
 
             $calendarService = new Google_Service_Calendar($googleClient);
             $calendarId = 'primary';
@@ -201,7 +206,7 @@ class ExampleController {
         // Guardar token en la BD
         $userCalendar = new UserCalendar();
 
-        $userCalendar->user_id = 1;
+        $userCalendar->user_id = get_current_user_id();
         $userCalendar->code = $accessToken['access_token'];
 
         $userCalendar->save();
@@ -210,14 +215,28 @@ class ExampleController {
         else return false;
     }
 
-    private function __getGoogleClient() {
+    private function __getGoogleClient($sucursal) {
         $client = new Google_Client();
         $client->setApplicationName('CitasSpa');
         $client->setScopes(Google_Service_Calendar::CALENDAR);
         $client->setAuthConfig(__DIR__ . '/../../assets/auth/credentials.json');
         $client->setAccessType('offline');
 
-        $userCalendar = UserCalendar::orderBy('id','desc')->first();
+        // Buscar el usuario en wp_users, que tenga la sucursal de la cita
+        $users = get_users([
+            'meta_query' => [
+                [
+                    'key'       => 'sucursal',
+                    'value'     => $sucursal,
+                    'compare'   => '='
+                ]
+            ]
+        ]);
+        $userIdFromSucursal = $users[0]->ID;
+
+        $userCalendar = UserCalendar::where('user_id', $userIdFromSucursal)
+            ->first();
+
         $accessToken = $userCalendar->code;
 
         $client->setAccessToken($accessToken);

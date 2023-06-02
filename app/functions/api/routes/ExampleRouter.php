@@ -6,13 +6,12 @@ class ExampleRouter {
     public function __construct()
     {
         add_action('rest_api_init', function () {
-            register_rest_route('custom/v1', '/examples', array(
+            register_rest_route('custom/v1', '/citas', array(
                 'methods' => 'GET',
                 'callback' => array($this, 'index'),
                 'permission_callback' => function ($request) {
                     return true;
                 },
-                'args'  => $this->__getArgs(['id', 'email'])
             ));
             
             register_rest_route('custom/v1', '/citas', array(
