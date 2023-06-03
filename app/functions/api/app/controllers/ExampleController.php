@@ -221,6 +221,7 @@ class ExampleController {
         $client->setScopes(Google_Service_Calendar::CALENDAR);
         $client->setAuthConfig(__DIR__ . '/../../assets/auth/credentials.json');
         $client->setAccessType('offline');
+        $client->setApprovalPrompt('consent');
 
         // Buscar el usuario en wp_users, que tenga la sucursal de la cita
         $users = get_users([
@@ -240,6 +241,16 @@ class ExampleController {
         $accessToken = $userCalendar->code;
 
         $client->setAccessToken($accessToken);
+
+        if ($client->isAccessTokenExpired()) {
+            $client->fetchAccessTokenWithRefreshToken();
+
+            $newAccessToken = $client->getAccessToken();
+
+            $client->setAccessToken($newAccessToken);
+
+            
+        }
 
         return $client;
     }
