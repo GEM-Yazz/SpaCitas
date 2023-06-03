@@ -238,7 +238,9 @@ class ExampleController {
         $client->setAccessToken($accessToken);
 
         if ($client->isAccessTokenExpired()) {
-            $client->fetchAccessTokenWithRefreshToken();
+            $refreshTokenSaved = $client->getRefreshToken();
+
+            $client->fetchAccessTokenWithRefreshToken($refreshTokenSaved);
 
             $newAccessToken = $client->getAccessToken();
 
