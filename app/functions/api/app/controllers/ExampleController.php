@@ -206,7 +206,7 @@ class ExampleController {
         // Guardar token en la BD
         $userCalendar = new UserCalendar();
 
-        $userCalendar->user_id = get_current_user_id();
+        $userCalendar->user_id = $request['user_id'];
         $userCalendar->code = $accessToken['access_token'];
 
         $userCalendar->save();
@@ -235,6 +235,7 @@ class ExampleController {
         $userIdFromSucursal = $users[0]->ID;
 
         $userCalendar = UserCalendar::where('user_id', $userIdFromSucursal)
+            ->orderBy('id','desc')
             ->first();
 
         $accessToken = $userCalendar->code;
