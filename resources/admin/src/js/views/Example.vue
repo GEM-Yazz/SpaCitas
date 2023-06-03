@@ -35,6 +35,7 @@ export default {
       const formData = new FormData();
 
       formData.append('code', code);
+      formData.append('user_id', this.context.user_id);
 
       fetch(`${this.context.api}/citas/auth/token`, {
         method: 'POST',
