@@ -215,7 +215,8 @@ class ExampleController {
         $client->setScopes(Google_Service_Calendar::CALENDAR);
         $client->setAuthConfig(__DIR__ . '/../../assets/auth/credentials.json');
         $client->setAccessType('offline');
-        $client->setApprovalPrompt('consent');
+        $client->setRedirectUri($_ENV['GOOGLE_CALENDAR_REDIRECT_URI']);
+        $client->setApprovalPrompt('force');
 
         // Buscar el usuario en wp_users, que tenga la sucursal de la cita
         $users = get_users([
