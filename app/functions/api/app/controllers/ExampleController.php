@@ -249,9 +249,20 @@ class ExampleController {
 
             $client->setAccessToken($newAccessToken);
 
-            
+            $this->__storeAccesToken($userCalendar->user_id, $newAccessToken['access_token']);
         }
 
         return $client;
+    }
+
+    private function __storeAccesToken(int $userId, string $accessToken) {
+        $userCalendar = new UserCalendar();
+
+        $userCalendar->user_id  = $userId;
+        $userCalendar->code     = $accessToken;
+
+        $userCalendar->save();
+
+        return $userCalendar;
     }
 }
