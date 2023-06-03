@@ -9,5 +9,6 @@ class UserCalendar extends Model {
     protected $fillable = [
         'user_id',
         'code',
+        'refresh_token'
     ];
 }

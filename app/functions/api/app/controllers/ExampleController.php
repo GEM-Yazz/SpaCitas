@@ -198,12 +198,13 @@ class ExampleController {
         $client->setAccessType('offline');
 
         $accessToken = $client->fetchAccessTokenWithAuthCode($request['code']);
+        $refreshToken = $client->getRefreshToken();
         
         if (array_key_exists('error', $accessToken)) {
             throw new Exception(join(', ', $accessToken));
         }
 
-        $userCalendar = $this->__storeAccesToken(intval($request['user_id']), $accessToken['access_token']);
+        $userCalendar = $this->__storeAccesToken(intval($request['user_id']), $accessToken['access_token'], $refreshToken);
 
         if ($userCalendar) return true;
         else return false;
@@ -255,13 +256,18 @@ class ExampleController {
         return $client;
     }
 
-    private function __storeAccesToken(int $userId, string $accessToken) {
-        $userCalendar = new UserCalendar();
-
-        $userCalendar->user_id  = $userId;
-        $userCalendar->code     = $accessToken;
-
-        $userCalendar->save();
+    private function __storeAccesToken(int $userId, string $accessToken, $refreshToken = '') {
+        if ($refreshToken) {
+            $userCalendar = UserCalendar::updateOrCreate(
+                ['user_id' => $userId],
+                ['code' => $accessToken, 'refresh_token' => json_encode($refreshToken)]
+            );
+        } else {
+            $userCalendar = UserCalendar::updateOrCreate(
+                ['user_id' => $userId],
+                ['code' => $accessToken]
+            );
+        }
 
         return $userCalendar;
     }
