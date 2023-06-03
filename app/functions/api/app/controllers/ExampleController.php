@@ -245,6 +245,8 @@ class ExampleController {
 
             $newAccessToken = $client->getAccessToken();
 
+            $newAccessToken['refresh_token'] = $refreshTokenSaved;
+
             $client->setAccessToken($newAccessToken);
 
             $this->__storeAccesToken($userCalendar->user_id, $newAccessToken['access_token']);
