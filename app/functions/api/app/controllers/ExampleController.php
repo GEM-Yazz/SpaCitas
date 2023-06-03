@@ -203,13 +203,7 @@ class ExampleController {
             throw new Exception(join(', ', $accessToken));
         }
 
-        // Guardar token en la BD
-        $userCalendar = new UserCalendar();
-
-        $userCalendar->user_id = $request['user_id'];
-        $userCalendar->code = $accessToken['access_token'];
-
-        $userCalendar->save();
+        $userCalendar = $this->__storeAccesToken(intval($request['user_id']), $accessToken['access_token']);
 
         if ($userCalendar) return true;
         else return false;
