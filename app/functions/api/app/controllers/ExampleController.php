@@ -196,6 +196,8 @@ class ExampleController {
         $client->setScopes(Google_Service_Calendar::CALENDAR);
         $client->setAuthConfig(__DIR__ . '/../../assets/auth/credentials.json');
         $client->setAccessType('offline');
+        $client->setRedirectUri($_ENV['GOOGLE_CALENDAR_REDIRECT_URI']);
+        $client->setApprovalPrompt('force');
 
         $accessToken = $client->fetchAccessTokenWithAuthCode($request['code']);
         $refreshToken = $client->getRefreshToken();
@@ -204,9 +206,9 @@ class ExampleController {
             throw new Exception(join(', ', $accessToken));
         }
 
-        $userCalendar = $this->__storeAccesToken(intval($request['user_id']), $accessToken['access_token'], $refreshToken);
+        $userCalendar = $this->__storeAccesToken(intval($request['user_id']), json_encode($accessToken), $refreshToken);
 
-        if ($userCalendar) return true;
+        if ($userCalendar) return $refreshToken;
         else return false;
     }
 
@@ -235,7 +237,7 @@ class ExampleController {
             ->orderBy('id','desc')
             ->first();
 
-        $accessToken = $userCalendar->code;
+        $accessToken = json_decode($userCalendar->code, true);
 
         $client->setAccessToken($accessToken);
 
@@ -250,7 +252,7 @@ class ExampleController {
 
             $client->setAccessToken($newAccessToken);
 
-            $this->__storeAccesToken($userCalendar->user_id, $newAccessToken['access_token']);
+            $this->__storeAccesToken($userCalendar->user_id, $newAccessToken['access_token'],$refreshTokenSaved);
         }
 
         return $client;
