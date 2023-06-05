@@ -123,7 +123,7 @@ class ExampleController {
 
     public function authGoogle($request) {
         $authGoogleLink = sprintf(
-            'https://accounts.google.com/o/oauth2/auth?scope=%s&redirect_uri=%s&response_type=code&client_id=%s&access_type=online',
+            'https://accounts.google.com/o/oauth2/auth?scope=%s&redirect_uri=%s&response_type=code&client_id=%s&access_type=offline&prompt=consent',
             urlencode ($_ENV['GOOGLE_OAUTH_SCOPE']),
             $_ENV['GOOGLE_CALENDAR_REDIRECT_URI'],
             $_ENV['GOOGLE_CLIENT_ID']
@@ -197,18 +197,18 @@ class ExampleController {
         $client->setAuthConfig(__DIR__ . '/../../assets/auth/credentials.json');
         $client->setAccessType('offline');
         $client->setRedirectUri($_ENV['GOOGLE_CALENDAR_REDIRECT_URI']);
-        $client->setApprovalPrompt('force');
+        $client->setApprovalPrompt('consent');
 
         $accessToken = $client->fetchAccessTokenWithAuthCode($request['code']);
         $refreshToken = $client->getRefreshToken();
-        
+
         if (array_key_exists('error', $accessToken)) {
             throw new Exception(join(', ', $accessToken));
         }
 
         $userCalendar = $this->__storeAccesToken(intval($request['user_id']), json_encode($accessToken), $refreshToken);
 
-        if ($userCalendar) return $refreshToken;
+        if ($userCalendar) return [$refreshToken, $accessToken, $accessToken['refresh_token']];
         else return false;
     }
 
@@ -219,7 +219,7 @@ class ExampleController {
         $client->setAuthConfig(__DIR__ . '/../../assets/auth/credentials.json');
         $client->setAccessType('offline');
         $client->setRedirectUri($_ENV['GOOGLE_CALENDAR_REDIRECT_URI']);
-        $client->setApprovalPrompt('force');
+        $client->setApprovalPrompt('consent');
 
         // Buscar el usuario en wp_users, que tenga la sucursal de la cita
         $users = get_users([
@@ -252,7 +252,7 @@ class ExampleController {
 
             $client->setAccessToken($newAccessToken);
 
-            $this->__storeAccesToken($userCalendar->user_id, $newAccessToken['access_token'],$refreshTokenSaved);
+            $this->__storeAccesToken($userCalendar->user_id, json_encode($newAccessToken), $refreshTokenSaved);
         }
 
         return $client;

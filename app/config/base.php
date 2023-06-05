@@ -13,5 +13,5 @@ return [
          * */
         'style_admin' => get_theme_file_uri(__getResourceURL('css', 'wp_admin.css')),
     ],
-    'vertion' => '1685677510381',
+    'vertion' => '1685936088417',
 ];
