@@ -3,7 +3,7 @@
 use Timber\Timber;
 
 Routes::map('auth', function($routeParams) {
-    wp_redirect('https://citas.site/wp-admin/admin.php?page=examples&code='.$_GET['code']);
+    wp_redirect($_ENV['APP_SITE'].'/wp-admin/admin.php?page=examples&code='.$_GET['code']);
     exit;
     $params = [
         'title' => 'Example',
