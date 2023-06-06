@@ -6,7 +6,7 @@
         <div class="c-nav__left d-flex justify-content-center align-items-center">
           <figure class="c-brand c-brand--normal d-flex justify-content-center align-items-center
            mt-2">
-            <router-link class="c-brand__link" to="/inicio">
+            <router-link class="c-brand__link" to="/">
       <img class="c-brand__image" src="@/assets/images/CariciaLogoGray.png" alt="Caricia - Logo" />
     </router-link>
 

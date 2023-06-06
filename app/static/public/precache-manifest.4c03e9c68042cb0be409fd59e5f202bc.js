@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/wp-content/themes/citas/app/static/public/404.png"
   },
   {
-    "revision": "2eebbc4b6dbfaefb9865",
+    "revision": "ac76959523a2054a6a08",
     "url": "/wp-content/themes/citas/app/static/public/css/app.d07431c5.css"
   },
   {
@@ -128,12 +128,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/wp-content/themes/citas/app/static/public/img/uñas.aca01e70.png"
   },
   {
-    "revision": "77f000b6f5eb5dc50b7d5dc8590e5657",
+    "revision": "c3f25176d18262edfe9b570accce95e7",
     "url": "/wp-content/themes/citas/app/static/public/index.html"
   },
   {
-    "revision": "2eebbc4b6dbfaefb9865",
-    "url": "/wp-content/themes/citas/app/static/public/js/app.85506115.js"
+    "revision": "ac76959523a2054a6a08",
+    "url": "/wp-content/themes/citas/app/static/public/js/app.9f7a64e5.js"
   },
   {
     "revision": "a180f7aebbf13260ecb1",
