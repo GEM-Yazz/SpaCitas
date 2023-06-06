@@ -15,7 +15,7 @@
 
         <div class="c-nav__right">
           <ul class="c-menu menu ul-reset">
-          <router-link class="c-brand__link2" to="/inicio">
+          <router-link class="c-brand__link2" to="/">
             INICIO
           </router-link>
 

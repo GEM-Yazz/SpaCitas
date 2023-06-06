@@ -32,3 +32,5 @@ resources/vue/*.sw?
 app/static/admin/temp/*
 app/static/public/temp/*
 composer.phar
+
+app/functions/api/assets/auth/credentials.json

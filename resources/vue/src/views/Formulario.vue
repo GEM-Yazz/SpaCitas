@@ -312,7 +312,7 @@ export default {
               alert('Si quiere cancelar su cita, contacte al número #######');
             }
           });
-        // window.location.href = '/confirmacion';
+        window.location.href = '/confirmacion';
       } else {
         alert('Porfavor llene los espacios');
       }
