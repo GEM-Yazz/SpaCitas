@@ -18,13 +18,13 @@
           <div>
             <h4>Dirección</h4>
               <p>
-                📍 Sursal: Plaza Las Pérgolas<br> Escénica 1a, Las Brisas.
+                📍 Sucursal: Plaza Las Pérgolas<br> Escénica 1a, Las Brisas.
                   39580
                 </p>
-                   <p>
+                  <p>
                  📍 Sucursal Centro: <br>
-                   Baja California #42, piso 3, <br>
-                   local P.
+                  Baja California #42, piso 3, <br>
+                  local P.
                   </p>
           </div>
         </div>

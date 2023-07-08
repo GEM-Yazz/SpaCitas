@@ -13,5 +13,7 @@ class Cita extends Model {
         'servicio',
         'sucursal',
         'email',
+        'reserva',
+        'hora',
     ];
 }
